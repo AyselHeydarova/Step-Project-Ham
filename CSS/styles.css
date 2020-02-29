@@ -237,13 +237,19 @@
     margin-bottom: 70px;
 }
 
+
+.work-tab-active {
+    color: #18cfab;
+    box-shadow: 0 -5px 0 #18cfab;
+    /*border-top: 5px solid #18cfab;*/
+}
+
 .work-tab-item {
     padding: 0 25px;
     border: 1px solid #ebebeb;
     line-height: 60px;
     font-size: 14px;
 }
-
 
 .work-gallery {
     width: 1140px;
