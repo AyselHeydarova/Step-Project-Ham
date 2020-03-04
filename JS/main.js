@@ -1,24 +1,32 @@
+
+
 let tabs = document.getElementById('tabs');
 let serviceTab = document.getElementsByClassName('service-tab');
 let serviceContent = document.getElementsByClassName('service-content');
 let serviceContentArray = [...serviceContent];
 let serviceTabArray = [...serviceTab];
 
-tabs.addEventListener('click', event => {
+tabs.addEventListener('click', event =>{
+    let pressedTab = event.target;
+    console.log(pressedTab);
+    let openedTabIndex = serviceTabArray.indexOf(pressedTab);
+    console.log(openedTabIndex);
 
-    let pressedItem = event.target;
-    let openTabIndex = serviceTabArray.indexOf(pressedItem);
-
-    for (let i = 0; i < serviceTabArray.length; i++) {
-        if (i === openTabIndex) {
-            serviceTabArray[openTabIndex].style.backgroundColor = '#18cfab';
-            serviceContentArray[openTabIndex].style.display = "flex";
+    for (let i = 0 ; i <serviceTabArray.length; i++) {
+        if (i === openedTabIndex) {
+            serviceTabArray[openedTabIndex].classList.add('current');
+            serviceContentArray[openedTabIndex].classList.add('default');
+            console.log(openedTabIndex);
         } else {
-            serviceTabArray[openTabIndex].style.backgroundColor = '#f8fcfe';
-            serviceContentArray[i].style.display = 'none';
+            serviceTabArray[i].classList.remove('current');
+            serviceContentArray[i].classList.remove('default');
         }
+
     }
-});
+
+    });
+
+
 
 
 // ______Gallery____________
@@ -185,7 +193,7 @@ const _TABS_CONTENT = [
         imgSrc: "Images/wordpress/wordpress3.jpg",
         title: 'Creative Design',
         category: _CATEGORIES[(Math.floor(Math.random() * (_CATEGORIES.length)))]
-    }
+    },
 
 ];
 
@@ -204,14 +212,17 @@ const renderTabContent = tabItem => {
     container.addEventListener('mouseenter', e => {
         const hoverContainer = document.createElement('div'),
             hoverIconShare = document.createElement('i'),
-            hoverIconSearch = document.createElement('img'),
+            hoverIconSearch = document.createElement('i'),
             hoverTitle = document.createElement('h4'),
             hoverCategory = document.createElement('p')
 
-
         hoverContainer.classList.add('gallery-hover-wrapper');
-        hoverIconShare.classList.add('fas-fa-link');
-        hoverIconSearch.classList.add('fas-fa-search');
+        hoverIconShare.classList.add('fas');
+        hoverIconShare.classList.add('fa-link');
+        hoverIconShare.classList.add('icon');
+        hoverIconSearch.classList.add('fas');
+        hoverIconSearch.classList.add('fa-search-plus');
+        hoverIconSearch.classList.add('icon');
         hoverTitle.classList.add('gallery-hover-title');
         hoverCategory.classList.add('gallery-hover-category');
 
@@ -262,7 +273,8 @@ galleryTabs.addEventListener('click', event => {
 const loadBtn = document.querySelector('.load-btn');
 
 loadBtn.addEventListener('click', event => {
-        _TABS_CONTENT.slice(12, 23).forEach(renderTabContent);
+        _TABS_CONTENT.slice(13, 24).forEach(renderTabContent);
+        loadBtn.remove();
     }
-)
+);
 
